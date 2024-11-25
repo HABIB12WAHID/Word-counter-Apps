@@ -3,16 +3,21 @@ import React, { useState } from 'react';
 
 function TextForm(props) {
 
+  let myStyle = {
+    color: props.mode ==='dark'? 'white': '#04274356',
+    backgroundColor: props.mode === 'dark'? '#04274356': 'white',
+}
+
   const handleUpClick = (e) => {
     let newText = text.toUpperCase();
     setText(newText);
-    props.showAlert("Converted to uppercase", "success");
+    props.showAlert("Converted to Uppercase", "success");
   }
 
   const handleLoClick = (e) => {
     let newText = text.toLowerCase();
     setText(newText);
-    props.showAlert("Converted to lowercase", "success");
+    props.showAlert("Converted to Lowercase", "success");
   }
 
   const handleClearClick = () => {
@@ -44,7 +49,7 @@ function TextForm(props) {
       <div className="container" style={{ color: props.mode === 'dark' ? 'white' : '#042743' }}>
         <h1 className='mb-4'>{props.heading}</h1>
         <div className="mb-3">
-          <textarea className="form-control" value={text} onChange={handleOnChange} style={{ backgroundColor: props.mode === 'dark' ? 'grey' : 'light', color: props.mode === 'dark' ? 'white' : '#042743' }} id="myBox" rows="7"></textarea>
+          <textarea className="form-control" value={text} onChange={handleOnChange} style={{ myStyle }} id="myBox" rows="7"></textarea>
         </div>
         <div className="buttonArea d-flex flex-wrap justify-content-space-between">
           <button className="btn btn-primary mx-2 my-2" onClick={handleUpClick}>Uppercase</button>

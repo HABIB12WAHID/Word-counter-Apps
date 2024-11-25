@@ -5,6 +5,9 @@ import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import About from './components/About';
 import Alert from './components/Alert';
+import Footer from './components/Footer';
+import Contact from './components/Contact';
+import Portfolio from './components/Portfolio';
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,15 +19,6 @@ function App() {
 
   const [mode, setMode] = useState('light');
   const [alert, setAlert] = useState(null);
-  const showAlert = (message, type) => {
-    setAlert({
-      msg: message,
-      type: type
-    })
-    setTimeout(() => {
-      setAlert(null)
-    }, 1200)
-  }
   const toggleMode = () => {
     if (mode === 'light') {
       setMode('dark');
@@ -38,20 +32,30 @@ function App() {
     }
   }
 
+  const showAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type
+    })
+    setTimeout(() => {
+      setAlert(null)
+    }, 1200)
+  }
+
   return (
     <>
       <Router>
-        <Navbar title="ConstText" mode={mode} toggleMode={toggleMode} />
+        <Navbar title="ConvertText" mode={mode} toggleMode={toggleMode} />
         <Alert alert={alert} />
         <div className="container">
-        <Routes>
-            <Route exact path="/" element={<TextForm showAlert={showAlert} heading="ConstText - Word counter | Character counter | Remove extra spaces | Copy text | Lowercase to Uppercase | Clear text" mode={mode} />} />
-            <Route exact path="/about" element={<About mode={mode}/>} />
+          <Routes>
+            <Route exact path="/" element={<TextForm showAlert={showAlert} heading="ConvertText - Word counter | Character counter | Remove extra spaces | Copy text | Lowercase to Uppercase | Clear text" mode={mode} />} />
+            <Route exact path="/about" element={<About mode={mode} />} />
+            <Route exact path="/contact" element={<Contact mode={mode}/>} />
+            <Route exact path="/portfolio" element={<Portfolio mode={mode} />} />
           </Routes>
         </div>
-        <footer className="footer bg-dark">
-          <p className='text-center text-white p-3 mb-0'>Copyright &copy; 2023. All rights reserved by ConstText. Created by Habib Wahid</p>
-        </footer>
+        <Footer mode={mode} toggleMode={toggleMode} />
       </Router>
     </>
   );
